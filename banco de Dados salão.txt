@@ -1,0 +1,44 @@
+CREATE TABLE cliente(
+	email TEXT NOT NULL UNIQUE,
+	numero TEXT NOT NULL UNIQUE,
+	cpf CHAR(14) PRIMARY KEY 
+
+);
+
+CREATE TABLE agendamento(
+	id SERIAL PRIMARY KEY, 
+	data DATE NOT NULL,
+	hora TIME NOT NULL,
+	fk_cliente CHAR(14),
+	
+	FOREIGN KEY(fk_cliente) REFERENCES cliente(cpf) 
+);
+
+
+
+CREATE TABLE servico(
+	id SERIAL PRIMARY KEY,
+	tipo TEXT NOT NULL UNIQUE
+
+);
+
+CREATE TABLE funcionario(
+	carteiraDeTrabalho CHAR(6) PRIMARY KEY,
+	salario INT2 NOT NULL,
+	email TEXT NOT NULL UNIQUE,
+	numero INT2 NOT NULL UNIQUE,
+	especialidade TEXT NOT NULL 
+);
+CREATE TABLE Agenda_Serviço(
+	id SERIAL PRIMARY KEY,
+	fk_Agendamento INT2,
+	fk_Servico INT2,
+	fk_Funcionario CHAR(6),
+	FOREIGN KEY(fk_Agendamento) REFERENCES agendamento(id),
+	FOREIGN KEY(fk_Servico) REFERENCES servico(id),
+	FOREIGN KEY(fk_Funcionario) REFERENCES funcionario(carteiraDeTrabalho)
+);
+	insert INTO servico(tipo) VALUES ('Unhas')
+	insert INTO servico(tipo) VALUES ('Cabelos')
+	insert INTO servico(tipo) VALUES ('Tratamento de Pele')
+)
